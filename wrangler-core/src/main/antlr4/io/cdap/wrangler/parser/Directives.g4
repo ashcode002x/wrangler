@@ -140,7 +140,7 @@ numberRange
  ;
 
 value
- : String | Number | Column | Bool
+ : String | Number | Column | Bool | BYTE_SIZE | TIME_DURATION
  ;
 
 ecommand
@@ -280,6 +280,10 @@ EscapeSequence
    |   OctalEscape
    ;
 
+BYTE_SIZE : Digit BYTE_UNIT ;
+
+TIME_DURATION : Digit TIME_UNIT ;
+
 fragment
 OctalEscape
    :   '\\' ('0'..'3') ('0'..'7') ('0'..'7')
@@ -311,3 +315,9 @@ fragment Int
 fragment Digit
  : [0-9]
  ;
+
+fragment BYTE_UNIT
+ : 'B'|'KB'|'MB'|'GB'|'TB'|'PB'|'EB'|'b'|'kb'|'mb'|'gb'|'tb'|'pb'|'eb' ;
+fragment TIME_UNIT
+ : 'ns'|'ms'|'s'|'m'|'h'|'d'|'NS'|'MS'|'S'|'M'|'H'|'D' ;
+

@@ -77,8 +77,6 @@ public class AggregateSizeTimeTest {
             double actualSize = ((Number) size).doubleValue();
             double actualTime = ((Number) time).doubleValue();
 
-            // Expected average: (1MB + 2MB) / 2 = 1.5MB and time average: (1000ms + 3000ms) / 2 = 2000ms
-            // Expected average: (3MB + 4MB) / 2 = 3.5MB and time average: (2000ms + 4000ms) / 2 = 3000ms
             assertEquals("Average size should be 3.5 MB", 3.5, actualSize, 0.01);
             assertEquals("Average time should be 3000 ms", 3000.0, actualTime, 0.01);
         } catch (Exception e) {

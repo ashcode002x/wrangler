@@ -54,6 +54,10 @@ public final class UsageDefinition implements Serializable {
     this.optionalCnt = optionalCnt;
   }
 
+  public static UsageDefinition of(String directive, TokenType tokenType, String label) {
+    return UsageDefinition.builder(directive)
+        .define(directive, tokenType, label);
+  }
   /**
    * Returns the name of the directive for which the this <code>UsageDefinition</code>
    * object is created.
@@ -157,6 +161,12 @@ public final class UsageDefinition implements Serializable {
     return new UsageDefinition.Builder(directive);
   }
 
+public UsageDefinition with(String srcTimeCol, TokenType tokenType, String sourceColumnForTimeDuration) {
+    Builder builder = UsageDefinition.builder(this.directive);
+    builder.define(srcTimeCol, tokenType, sourceColumnForTimeDuration, true);
+    return builder.build();
+}
+
   /**
    * This inner builder class provides a way to create <code>UsageDefinition</code>
    * object. It exposes different methods that allow users to configure the <code>TokenDefinition</code>
@@ -192,14 +202,16 @@ public final class UsageDefinition implements Serializable {
      * Allows users to define a token with a name, type of the token and additional optional
      * for the label that is used during creation of the usage for the directive.
      *
-     * @param name of the token in the definition of a directive.
-     * @param type of the token to be extracted.
+     * @param name  of the token in the definition of a directive.
+     * @param type  of the token to be extracted.
      * @param label label that modifies the usage for this field.
+     * @return
      */
-    public void define(String name, TokenType type, String label) {
+    public UsageDefinition define(String name, TokenType type, String label) {
       TokenDefinition spec = new TokenDefinition(name, type, label, currentOrdinal, Optional.FALSE);
       currentOrdinal++;
       tokens.add(spec);
+      return null;
     }
 
     /**

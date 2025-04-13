@@ -4,6 +4,7 @@ import com.google.gson.JsonElement;
 
 public class TimeDuration implements Token {
     private final long nanoseconds;
+    private final String unit;
 
     public TimeDuration(String value) {
         super();
@@ -13,6 +14,7 @@ public class TimeDuration implements Token {
 
         double numericValue = Double.parseDouble(numeric);
         nanoseconds = convertToNanoseconds(numericValue, unit);
+        this.unit=unit;
     }
 
     private long convertToNanoseconds(double value, String unit) {
@@ -37,6 +39,13 @@ public class TimeDuration implements Token {
 
     public double getSeconds() {
         return nanoseconds / 1_000_000_000.0;
+    }
+
+    public long getValue(){
+        return nanoseconds;
+    }
+    public String getUnit(){
+        return unit;
     }
 
     @Override

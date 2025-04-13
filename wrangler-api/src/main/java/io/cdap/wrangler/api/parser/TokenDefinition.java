@@ -91,4 +91,16 @@ public final class TokenDefinition implements Serializable {
     return type;
   }
 
+  public ByteSize byteSize(String value) {
+    if (type == TokenType.BYTE_SIZE) {
+      return new ByteSize(value);
+    }
+    throw new IllegalStateException("Not a byte size token");
+  }
+    public TimeDuration timeDuration(String value) {
+        if (type == TokenType.TIME_DURATION) {
+        return new TimeDuration(value);
+        }
+        throw new IllegalStateException("Not a time duration token");
+    }
 }

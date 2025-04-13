@@ -4,6 +4,7 @@ import com.google.gson.JsonElement;
 
 public class ByteSize implements Token {
     private final double bytes;
+    private final String unit;
 
     public ByteSize(String value) {
         super();
@@ -13,6 +14,7 @@ public class ByteSize implements Token {
 
         double numericValue = Double.parseDouble(numeric);
         bytes = convertToBytes(numericValue, unit);
+        this.unit = unit;
     }
 
     private double convertToBytes(double value, String unit) {
@@ -38,6 +40,14 @@ public class ByteSize implements Token {
 
     public double getMegabytes() {
         return bytes / (1024 * 1024);
+    }
+
+    public double getValue(){
+        return bytes;
+    }
+
+    public String getUnit(){
+        return unit;
     }
 
     @Override
